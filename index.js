@@ -11,7 +11,7 @@ const Message = require("./schemas/Message");
 const channelRoutes = require("./routes/channelRoutes");
 const User = require('./schemas/User');
 const PORT = process.env.PORT || 4000;
-
+const CLIENT_URL = process.env.FRONTEND_URL;
 // Mongo Db Config
 const mongoUrl = process.env.mongoUrl;
 async function run() {
@@ -33,7 +33,7 @@ app.use("/channel", channelRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: CLIENT_URL,
     methods: ["POST", "GET"],
     credentials: true
   }
