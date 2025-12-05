@@ -2,7 +2,7 @@ const  mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    fullName: {             // human readable name
+    fullName: {         
       type: String,
       required: true,
       trim: true
@@ -16,14 +16,12 @@ const UserSchema = new mongoose.Schema(
       trim: true
     },
 
-    passwordHash: {         // hashed password
+    passwordHash: {       
       type: String,
       required: true
     },
-
-    // optional: roles, avatar, lastSeen etc.
   },
-  { timestamps: true }      // adds createdAt and updatedAt automatically
+  { timestamps: true }     
 );
 
 const User = mongoose.model("User", UserSchema);

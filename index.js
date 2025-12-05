@@ -14,14 +14,11 @@ const PORT = process.env.PORT || 4000;
 const CLIENT_URL = process.env.FRONTEND_URL;
 // Mongo Db Config
 const mongoUrl = process.env.mongoUrl;
-async function run() {
-  await mongoose.connect(process.env.mongoUrl);
-  const bad = await User.find({ $or: [{ username: null }, { username: { $exists: false } }, { user_name: null }, { user_name: { $exists: false } }] });
-  console.log("Bad docs:", bad);
-  console.log("Count:", bad.length);
-  await mongoose.disconnect();
-}
-run().catch(err => { console.error(err); process.exit(1); });
+mongoose.connect(mongoUrl).then(()=>{
+  console.log("Connected to MongoDB");
+}).catch((err)=>{
+  console.log(err);
+});
 
 // middlewares
 app.use(cors());
